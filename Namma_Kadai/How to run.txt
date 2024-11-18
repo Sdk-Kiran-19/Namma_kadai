@@ -1,0 +1,7 @@
+Extract the folder
+
+run : pip install -r requirements.txt
+run : flask --app run.py db init
+run : flask --app run.py db migrate
+run : flask --app run.py db upgrage (if any changes in the database)
+run : python run.py

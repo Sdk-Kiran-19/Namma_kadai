@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2>Purchase Report</h2>
+        {% if purchases %}
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>S.NO</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Date & Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for purchase in purchases %}
+                            <tr>
+                                <td>{{ loop.index }}</td>
+                                <td>{{ purchase.item_name }}</td>
+                                <td>{{ purchase.qty }}</td>
+                                <td>${{ "%.2f"|format(purchase.rate) }}</td>
+                                <td>${{ "%.2f"|format(purchase.amount) }}</td>
+                                <td>{{ purchase.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info">
+            <p>No purchase records found.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
